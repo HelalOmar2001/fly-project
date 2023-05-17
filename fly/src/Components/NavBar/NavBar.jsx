@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // imported icons from react-icons
 import { SiConsul } from "react-icons/si";
@@ -10,6 +10,15 @@ import { CgMenuGridO } from "react-icons/cg";
 import logo from "../../Assets/airplane.png";
 
 const NavBar = () => {
+  //to remove the navBarTwo when the screen size is less than 768px
+  const [active, setActive] = useState("navBarMenu");
+  const showNavBar = () => {
+    setActive("navBarMenu showNavBar");
+  };
+  const hideNavBar = () => {
+    setActive("navBarMenu");
+  };
+
   return (
     <div className="navBar flex">
       <div className="navBarOne flex">
@@ -39,23 +48,33 @@ const NavBar = () => {
           <img src={logo} className="Logo" />
         </div>
 
-        <div className="navBarMenu">
+        <div className={active}>
           <ul className="menu flex">
-            <li className="listItem">Home</li>
-            <li className="listItem">About</li>
-            <li className="listItem">Offers</li>
-            <li className="listItem">Seats</li>
-            <li className="listItem">Destination</li>
+            <li onClick={hideNavBar} className="listItem">
+              Home
+            </li>
+            <li onClick={hideNavBar} className="listItem">
+              About
+            </li>
+            <li onClick={hideNavBar} className="listItem">
+              Offers
+            </li>
+            <li onClick={hideNavBar} className="listItem">
+              Seats
+            </li>
+            <li onClick={hideNavBar} className="listItem">
+              Destination
+            </li>
           </ul>
 
-          <button className="btn flex btnOne">Contact</button>
+          <button onClick={hideNavBar} className="btn flex btnOne">
+            Contact
+          </button>
         </div>
 
-        {/* <button className="btn flex btnTwo">
-            Contact
-          </button> */}
+        <button className="btn flex btnTwo">Contact</button>
 
-        <div className="toggleIcon">
+        <div onClick={showNavBar} className="toggleIcon">
           <CgMenuGridO className="icon" />
         </div>
       </div>
